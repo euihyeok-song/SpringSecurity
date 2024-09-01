@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.varchar6.petcast.domain.member.query.mapper.MemberMapper">
+    <resultMap id="memberResultMap" type="com.varchar6.petcast.domain.member.query.dto.MemberDTO">
+        <id property="id" column="ID"/>
+        <result property="loginId" column="LOGIN_ID"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="name" column="NAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="nickname" column="NICKNAME"/>
+        <result property="image" column="IMAGE"/>
+        <result property="createdAt" column="CREATED_AT"/>
+        <result property="updatedAt" column="UPDATED_AT"/>
+        <result property="active" column="ACTIVE"/>
+        <result property="introduction" column="INTRODUCTION"/>
+    </resultMap>
+    <select id="selectMemberByMemberId" resultMap="memberResultMap" parameterType="_int">
+        SELECT
+               A.ID
+             , A.LOGIN_ID
+             , A.PASSWORD
+             , A.NAME
+             , A.PHONE
+             , A.NICKNAME
+             , A.IMAGE
+             , A.CREATED_AT
+             , A.UPDATED_AT
+             , A.ACTIVE
+             , A.INTRODUCTION
+          FROM TBL_MEMBER A
+         WHERE A.ID = #{ id }
+    </select>
+</mapper>
